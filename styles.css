@@ -1,0 +1,864 @@
+/* =========================================
+   研究用UIデザインシステム (Compassion Care AI)
+   Theme: Neutral, Academic, Warm, Safe
+   ========================================= */
+
+:root {
+    /* カラーパレット：セージグリーン & アースカラー */
+    --primary-color: #7c9473;       /* メイン：落ち着いたセージグリーン */
+    --primary-dark: #5e7057;        /* メイン（濃）：ホバー時など */
+    --primary-light: #e8ece6;       /* メイン（薄）：背景アクセント */
+    
+    --accent-color: #cfd8cc;        /* サブアクセント：薄いグレーグリーン */
+    --highlight-color: #d4a373;     /* 強調色：控えめなアンバー */
+    
+    --bg-body: #f9f9f7;             /* 全体背景：真っ白ではない生成り色 */
+    --bg-card: #ffffff;             /* カード背景：白 */
+    
+    --text-main: #4a4a4a;           /* 文字：濃いグレー */
+    --text-sub: #7a7a7a;            /* 文字：薄いグレー */
+    --text-white: #ffffff;          /* 文字：白 */
+    
+    --border-color: #e0e0e0;        /* 境界線 */
+    
+    /* チャット吹き出し用 */
+    --chat-client-bg: #ffffff;
+    --chat-client-border: #e0e0e0;
+    --chat-ai-bg: #eff3ee;          /* AIは薄いグリーン背景 */
+    --chat-ai-border: #cfd8cc;
+    
+    /* 共通設定 */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --font-family: 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   コンポーネント: ボタン
+   ========================================= */
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(94, 112, 87, 0.2);
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-create {
+    background-color: var(--primary-dark);
+    color: white;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-sm {
+    padding: 6px 16px;
+    font-size: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   レイアウト & ヘッダー
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.header-left .logo-container h1 {
+    font-size: 18px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.header-left .logo-container .subtitle {
+    font-size: 11px;
+    color: var(--text-sub);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* =========================================
+   画面: ログイン
+   ========================================= */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-body) 0%, #e8ece6 100%);
+}
+
+.login-container {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-header h2 {
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+.login-header .subtitle-en {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-bottom: 30px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+}
+.login-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(124, 148, 115, 0.1);
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-bottom: 15px;
+    min-height: 20px;
+}
+
+/* =========================================
+   画面: ウェルカム & 設定
+   ========================================= */
+.welcome-container, .settings-container, .explanation-container, .preparation-container {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 30px;
+}
+
+.welcome-header, .preparation-header, .explanation-header { 
+    text-align: center; margin-bottom: 30px; 
+}
+.welcome-header h2, .preparation-header h2, .explanation-header h2 { 
+    color: var(--primary-dark); font-size: 24px; 
+}
+.welcome-description { max-width: 700px; margin: 0 auto 40px; color: var(--text-main); }
+
+.principle-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.principle-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-sub);
+}
+.principle-icon .icon { font-size: 24px; margin-bottom: 5px; opacity: 0.8; }
+.principle-icon .name { font-size: 11px; }
+
+/* 設定画面 */
+.settings-section, .explanation-section {
+    background-color: var(--primary-light);
+    padding: 25px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+}
+.settings-section h3, .explanation-section h3 {
+    font-size: 16px;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 8px;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+/* =========================================
+   画面: 心の選択 (Grid Layout + Accordion)
+   ========================================= */
+.heart-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+    align-items: start;
+    width: 100%;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.heart-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 25px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+}
+
+.heart-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.heart-card.selected {
+    background-color: #f7f9f7;
+    border-color: var(--primary-color);
+    border-width: 2px;
+    box-shadow: 0 0 0 4px rgba(124, 148, 115, 0.1);
+    transform: none;
+}
+
+.heart-card .heart-icon { font-size: 32px; margin-bottom: 15px; }
+.heart-card .heart-name-ja {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+.heart-card .heart-name-en {
+    font-size: 11px;
+    color: var(--text-sub);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+/* 解説文の高さを統一 */
+.heart-card .heart-description {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.5;
+    min-height: 3em;       /* 2行分確保 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+/* アコーディオン展開エリア（スマホ用） */
+.heart-details-expanded {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    width: 100%;
+    display: none;
+    animation: slideDown 0.3s ease-out forwards;
+    text-align: left;
+}
+
+.heart-details-expanded.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.expanded-message {
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.6);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.expanded-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* =========================================
+   画面: シナリオ選択
+   ========================================= */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.scenario-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.scenario-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.scenario-card h3 {
+    font-size: 16px;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty-indicator {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+.difficulty-indicator.beginner { background: #e3f2fd; color: #1976d2; }
+.difficulty-indicator.intermediate { background: #fff3e0; color: #f57c00; }
+.difficulty-indicator.advanced { background: #fbe9e7; color: #d84315; }
+
+.scenario-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.scenario-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* =========================================
+   画面: 対話 (Chat Interface)
+   ========================================= */
+.dialogue-container {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 30px;
+    box-shadow: var(--shadow-card);
+    height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+}
+
+.scenario-info {
+    background: var(--primary-light);
+    padding: 15px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+.scenario-info h3 { font-size: 15px; color: var(--primary-dark); margin-bottom: 5px; }
+.scenario-info p { font-size: 12px; color: var(--text-main); margin: 0; }
+
+.current-heart-reminder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.chat-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fcfcfc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+}
+
+.message {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+.message.client { flex-direction: row; }
+.message.therapist { flex-direction: row-reverse; }
+
+.message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+}
+.message.client .message-avatar {
+    background-color: #eceff1;
+    color: #607d8b;
+}
+.message.client .message-avatar::after { content: "👤"; }
+
+.message.therapist .message-avatar {
+    background-color: var(--primary-color);
+    color: white;
+}
+.message.therapist .message-avatar::after { content: "🌿"; }
+
+.message-content {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.message.client .message-content {
+    background: var(--chat-client-bg);
+    border: 1px solid var(--chat-client-border);
+    border-top-left-radius: 0;
+    color: var(--text-main);
+}
+.message.therapist .message-content {
+    background: var(--chat-ai-bg);
+    border: 1px solid var(--chat-ai-border);
+    border-top-right-radius: 0;
+    color: var(--text-main);
+}
+
+/* 入力エリア（元ファイルのデザイン構造） */
+.input-area {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.input-area input {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 14px;
+}
+.input-area input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+.input-area button {
+    border-radius: 30px;
+    padding: 0 30px;
+}
+
+/* =========================================
+   画面: フィードバック
+   ========================================= */
+.feedback-screen .reflection-section {
+    background: white;
+    border-left: 4px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.attitude-evaluations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.evaluation-item {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* === 省察セクション（改良版） === */
+.personal-reflection-section {
+    background-color: var(--primary-light);
+    padding: 25px;
+    border-radius: var(--radius-sm);
+    margin-top: 30px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.personal-reflection-section h3 {
+    color: var(--primary-dark);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.personal-reflection-section .prompt {
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.personal-reflection-section textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.personal-reflection-section textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(124, 148, 115, 0.1);
+}
+
+.personal-reflection-section .save-note {
+    color: var(--text-sub);
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* ダウンロードボタン */
+.download-reflection-btn {
+    background: white;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-color);
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.download-reflection-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(124, 148, 115, 0.2);
+}
+
+.practice-tips ul, .next-steps ul {
+    list-style: none;
+    padding-left: 0;
+}
+.practice-tips li, .next-steps li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    font-size: 14px;
+}
+.practice-tips li:before, .next-steps li:before {
+    content: "•";
+    position: absolute;
+    left: 5px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* =========================================
+   レスポンシブ対応 (Mobile)
+   ========================================= */
+@media (max-width: 768px) {
+    .container { padding: 15px; }
+    
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .header-right { width: 100%; justify-content: flex-end; }
+
+    .heart-cards, .scenario-grid, .attitude-evaluations {
+        grid-template-columns: 1fr;
+    }
+    
+    .dialogue-container {
+        padding: 15px;
+        height: calc(100vh - 80px);
+    }
+    
+    .message-content { max-width: 88%; font-size: 14px; }
+    
+    /* チャット入力エリアは横並びのまま維持 */
+    .input-area { 
+        flex-direction: row;
+        gap: 8px;
+    }
+    .input-area input {
+        flex: 1;
+        min-width: 0; /* フレックスアイテムが縮小できるように */
+    }
+    .input-area button { 
+        flex-shrink: 0;
+        padding: 0 20px;
+        width: auto;
+    }
+    
+    .btn { width: 100%; margin-bottom: 5px; }
+    .action-buttons { flex-direction: column; }
+    
+    .login-container { padding: 30px 20px; }
+}
+
+/* ローディング */
+.loading-indicator { text-align: center; padding: 20px; color: var(--text-sub); }
+.spinner {
+    width: 30px; height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* =========================================
+   PC用 レスポンシブ対応 (Split View Animation)
+   ========================================= */
+
+/* PC用プレビューパネル（デフォルトは幅0で隠す） */
+.desktop-heart-preview {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    /* コンテナを拡張 */
+    .preparation-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* 左右レイアウトの定義 */
+    .preparation-layout {
+        display: flex;
+        justify-content: center; /* 初期状態は中央寄せ */
+        gap: 0; /* 初期状態はギャップなし */
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* 左側：カード一覧 */
+    .heart-cards {
+        flex: 1; 
+        max-width: 1000px; /* 全幅時は広く使う */
+        margin: 0;
+    }
+
+    /* PCではスマホ用のアコーディオン詳細を強制非表示 */
+    .heart-details-expanded {
+        display: none !important; 
+    }
+    
+    /* カードのスタイル調整 */
+    .heart-card {
+        min-height: auto;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    
+    /* 選択状態の強調 */
+    .heart-card.selected {
+        border-color: var(--primary-color);
+        background-color: #f0f7f0;
+        transform: scale(1.02);
+    }
+
+    /* 右側：詳細プレビューパネル */
+    .desktop-heart-preview {
+        display: block;
+        width: 0; /* 初期幅0 */
+        opacity: 0; /* 初期透明 */
+        padding: 0; /* パディングも0にしないと幅を取る */
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        
+        position: sticky;
+        top: 100px;
+        box-shadow: none;
+        
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; <--- 削除して上詰めにする */
+        justify-content: flex-start; /* 上詰め */
+        
+        /* アニメーション設定 */
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        margin-left: 0;
+        
+        /* スクロール対策 */
+        max-height: 80vh; /* 高さが画面を超えないように */
+        overflow-y: auto; /* コンテンツが多い場合はスクロール */
+    }
+
+    /* --- 選択後のアクティブ状態 --- */
+    
+    /* レイアウトシフト時 */
+    .preparation-layout.layout-shifted {
+        justify-content: flex-start; /* 左寄せに変更 */
+    }
+
+    /* プレビューパネルの展開 */
+    .desktop-heart-preview.active {
+        width: 360px; /* 幅を広げる */
+        opacity: 1;
+        padding: 40px 30px;
+        box-shadow: var(--shadow-card);
+        margin-left: 40px; /* ギャップを作る */
+    }
+
+    /* プレビュー内のコンテンツ */
+    .preview-content {
+        width: 100%; /* コンテンツ幅を親に合わせる */
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s; /* 遅延させて表示 */
+    }
+    
+    .desktop-heart-preview.active .preview-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .preview-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .desktop-heart-preview h3 {
+        color: var(--primary-dark);
+        font-size: 20px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 15px;
+        display: block;
+        text-align: center;
+    }
+    .preview-message {
+        font-size: 14px;
+        line-height: 1.8;
+        text-align: left;
+        margin-bottom: 30px;
+        color: var(--text-main);
+        background: var(--bg-body);
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .desktop-heart-preview .btn {
+        width: 100%;
+    }
+}
