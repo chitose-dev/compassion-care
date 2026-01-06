@@ -9,6 +9,7 @@ let selectedHeart = null;
 let selectedHeartData = {};
 let conversationHistory = [];
 let currentScenarioData = null;
+let allScenarios = {}; // 全シナリオを保持
 
 // 心のメッセージデータ
 const heartMessages = {
@@ -122,35 +123,39 @@ const heartExplanations = {
     }
 };
 
-// シナリオデータ
-const scenarios = {
+// デフォルトシナリオデータ
+const defaultScenarios = {
     1: {
         title: "事例1：学校への不安",
         description: "中学2年生。学校に行きづらさを感じており、対人関係の悩みを抱えている。",
         initialMessage: "こんにちは... 実は、最近学校に行くのがちょっと辛くて...",
         difficulty: "beginner",
-        order: 1
+        order: 1,
+        tag: "思春期 / 対人関係"
     },
     2: {
         title: "事例2：親子関係の葛藤",
         description: "小学5年生。親の期待と自分の気持ちの間で揺れ動いている。",
         initialMessage: "先生、聞いてもらっていいですか？ お父さんとお母さんのこと、なんだけど...",
         difficulty: "intermediate",
-        order: 2
+        order: 2,
+        tag: "家族 / 自己理解"
     },
     3: {
         title: "事例3：感情の混乱",
         description: "高校1年生。最近イライラすることが多く、自分でも理由がわからず戸惑っている。",
         initialMessage: "なんか最近、すごくイライラするんです。自分でも何でかわからなくて...",
         difficulty: "intermediate",
-        order: 3
+        order: 3,
+        tag: "感情理解 / 自己一致"
     },
     4: {
         title: "事例4：沈黙との向き合い",
         description: "中学3年生。言葉にできない思いがあり、長い沈黙が続く。",
         initialMessage: "......（しばらく黙っている）",
         difficulty: "advanced",
-        order: 4
+        order: 4,
+        tag: "沈黙 / 待つ力"
     }
 };
 
@@ -211,6 +216,7 @@ function showMainApp() {
     document.getElementById('main-footer').style.display = 'block';
     backToHome();
     loadSettings();
+    loadScenarios(); // シナリオ読み込み
 }
 
 // ===== 設定画面 =====
@@ -547,17 +553,45 @@ async function loadScenarios() {
             const data = await response.json();
             const grid = document.getElementById('scenario-grid');
             
-            // デフォルトシナリオの保持
-            const defaultScenarios = grid.querySelectorAll('.scenario-card[data-default="true"]');
+            // 全シナリオをクリア
             grid.innerHTML = '';
-            defaultScenarios.forEach(card => grid.appendChild(card));
+            allScenarios = {};
+            
+            // デフォルトシナリオを追加
+            Object.keys(defaultScenarios).forEach(id => {
+                const scenario = defaultScenarios[id];
+                allScenarios[id] = scenario;
+                
+                const diffClass = scenario.difficulty === 'beginner' ? 'beginner' : 
+                                  scenario.difficulty === 'advanced' ? 'advanced' : 'intermediate';
+                const diffText = scenario.difficulty === 'beginner' ? '初級' :
+                                 scenario.difficulty === 'advanced' ? '上級' : '中級';
+                
+                const card = document.createElement('div');
+                card.className = 'scenario-card';
+                card.setAttribute('data-order', scenario.order);
+                card.onclick = () => startScenario(id);
+                
+                card.innerHTML = `
+                    <h3>
+                        <span>${scenario.title}</span>
+                        <span class="difficulty-indicator ${diffClass}">${diffText}</span>
+                    </h3>
+                    <p>${scenario.description}</p>
+                    <span class="scenario-tag">${scenario.tag}</span>
+                `;
+                grid.appendChild(card);
+            });
             
             // カスタムシナリオの追加
             data.scenarios.forEach((scenario, index) => {
+                const scenarioId = 'custom_' + scenario.id;
+                allScenarios[scenarioId] = scenario;
+                
                 const card = document.createElement('div');
                 card.className = 'scenario-card';
                 card.setAttribute('data-order', 100 + index);
-                card.onclick = () => startScenario('custom_' + scenario.id);
+                card.onclick = () => startScenario(scenarioId);
                 
                 const diffClass = scenario.difficulty === 'beginner' ? 'beginner' : 
                                   scenario.difficulty === 'advanced' ? 'advanced' : 'intermediate';
@@ -609,16 +643,16 @@ async function startScenario(scenarioId) {
     currentScenario = scenarioId;
     conversationHistory = [];
     
-    let scenario;
-    if (typeof scenarioId === 'number') {
-        scenario = scenarios[scenarioId];
-    } else {
+    let scenario = allScenarios[scenarioId];
+    
+    if (!scenario) {
         try {
             const response = await fetch(`${API_BASE_URL}/scenarios/${scenarioId}`, {
                 headers: { 'Authorization': `Bearer ${sessionToken}` }
             });
             if (response.ok) {
                 scenario = await response.json();
+                allScenarios[scenarioId] = scenario;
             } else {
                 alert('シナリオの読み込みに失敗しました');
                 return;
@@ -854,12 +888,6 @@ ${reflectionText}
 
 // ===== 初期化 =====
 window.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.scenario-card');
-    cards.forEach((card, index) => {
-        card.setAttribute('data-order', index + 1);
-        card.setAttribute('data-default', 'true');
-    });
-    
     const savedToken = localStorage.getItem('sessionToken');
     if (savedToken) {
         sessionToken = savedToken;
