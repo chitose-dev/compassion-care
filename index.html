@@ -98,7 +98,7 @@
                 
                 <div class="welcome-description">
                     <p>本システムは、対人援助職や教育者のための心理的バーンアウト予防および対話トレーニングツールです。</p>
-                    <p>「四無量心（慈・悲・喜・捨）」およびロジャーズの「中核三条件」をベースとした8つの心理的態度を、
+                    <p>支援者として大切にしたい8つの心のあり方を、
                     生成AIとの模擬対話を通じて安全に練習することができます。</p>
                     <p>支援者自身の「心の器」を安定させ、持続可能なケアの実践を支援することを目的としています。</p>
                 </div>
@@ -109,9 +109,9 @@
                     <div class="principle-icon"><div class="icon">☀️</div><div class="name">エンパシック・ジョイ</div></div>
                     <div class="principle-icon"><div class="icon">🍃</div><div class="name">エクアニミティ</div></div>
                     <div class="principle-icon"><div class="icon">💧</div><div class="name">共感的理解</div></div>
-                    <div class="principle-icon"><div class="icon">🌷</div><div class="name">無条件の肯定的配慮</div></div>
-                    <div class="principle-icon"><div class="icon">🌾</div><div class="name">自己一致</div></div>
-                    <div class="principle-icon"><div class="icon">🕊️</div><div class="name">臨床的禁欲</div></div>
+                    <div class="principle-icon"><div class="icon">🌷</div><div class="name">無条件の受容</div></div>
+                    <div class="principle-icon"><div class="icon">🌾</div><div class="name">ありのままの誠実さ</div></div>
+                    <div class="principle-icon"><div class="icon">🕊️</div><div class="name">静けさを保つ心</div></div>
                 </div>
                 
                 <div class="action-buttons">
@@ -132,12 +132,12 @@
                 
                 <div class="explanation-content">
                     <div class="explanation-section">
-                        <h3>📝 概念定義</h3>
+                        <h3>📝 概念について</h3>
                         <div id="explanation-origin"></div>
                     </div>
                     
                     <div class="explanation-section">
-                        <h3>💗 臨床的意義</h3>
+                        <h3>💗 支援の場面で</h3>
                         <div id="explanation-clinical"></div>
                     </div>
                     
@@ -161,8 +161,8 @@
         <div class="heart-preparation-screen">
             <div class="preparation-container">
                 <div class="preparation-header">
-                    <h2>🪷 今日、意識したい態度を選んでください</h2>
-                    <p>トレーニングを始める前に、今回特に意識して実践したい態度（心）を一つ選択してください。</p>
+                    <h2>🪷 今日、意識したい心を選んでください</h2>
+                    <p>トレーニングを始める前に、今回特に意識して実践したい心のあり方を一つ選択してください。</p>
                 </div>
 
                 <div class="preparation-layout" id="preparation-layout">
@@ -205,21 +205,21 @@
 
                         <div class="heart-card" onclick="selectHeart('unconditional-regard', this)">
                             <div class="heart-icon">🌷</div>
-                            <div class="heart-name-ja">無条件の肯定的配慮</div>
+                            <div class="heart-name-ja">無条件の受容</div>
                             <div class="heart-name-en">Unconditional Positive Regard</div>
                             <div class="heart-description">存在そのものを大切に思う心</div>
                         </div>
 
                         <div class="heart-card" onclick="selectHeart('congruence', this)">
                             <div class="heart-icon">🌾</div>
-                            <div class="heart-name-ja">自己一致</div>
+                            <div class="heart-name-ja">ありのままの誠実さ</div>
                             <div class="heart-name-en">Congruence</div>
-                            <div class="heart-description">飾らず、ありのままの誠実さ</div>
+                            <div class="heart-description">飾らず、自分に正直でいる心</div>
                         </div>
 
                         <div class="heart-card" onclick="selectHeart('abstinence', this)">
                             <div class="heart-icon">🕊️</div>
-                            <div class="heart-name-ja">臨床的禁欲</div>
+                            <div class="heart-name-ja">静けさを保つ心</div>
                             <div class="heart-name-en">Therapeutic Abstinence</div>
                             <div class="heart-description">自分の欲求を脇に置き、静けさを保つ心</div>
                         </div>
@@ -286,20 +286,20 @@
                 <div class="form-group">
                     <label for="training-focus">特に訓練したい観点（複数選択可）</label>
                     <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" value="empathy"> 共感的理解</label>
+                        <label class="checkbox-label"><input type="checkbox" value="empathy"> 相手の世界を感じる力</label>
                         <label class="checkbox-label"><input type="checkbox" value="silence"> 沈黙・待つ力</label>
-                        <label class="checkbox-label"><input type="checkbox" value="calmness"> 平静（捨）</label>
-                        <label class="checkbox-label"><input type="checkbox" value="boundaries"> 境界線の保持</label>
-                        <label class="checkbox-label"><input type="checkbox" value="congruence"> 自己一致</label>
-                        <label class="checkbox-label"><input type="checkbox" value="acceptance"> 無条件の受容</label>
+                        <label class="checkbox-label"><input type="checkbox" value="calmness"> 穏やかさを保つ力</label>
+                        <label class="checkbox-label"><input type="checkbox" value="boundaries"> 巻き込まれすぎない力</label>
+                        <label class="checkbox-label"><input type="checkbox" value="congruence"> 自分に正直でいる力</label>
+                        <label class="checkbox-label"><input type="checkbox" value="acceptance"> 無条件に受け入れる力</label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="scenario-difficulty">シナリオの難易度</label>
                     <select id="scenario-difficulty">
-                        <option value="beginner">初級（基本的な共感応答）</option>
-                        <option value="intermediate">中級（複雑な感情の理解）</option>
+                        <option value="beginner">初級（基本的な応答）</option>
+                        <option value="intermediate">中級（複雑な感情への対応）</option>
                         <option value="advanced">上級（沈黙、抵抗、転移への対応）</option>
                     </select>
                 </div>
@@ -371,17 +371,17 @@
 
                 <div id="feedback-content">
                     <div class="reflection-section">
-                        <h3>💗 共感的理解について</h3>
+                        <h3>💗 相手の世界を感じること</h3>
                         <p id="feedback-empathy">生成中...</p>
                     </div>
 
                     <div class="reflection-section">
-                        <h3>🍃 平静（捨）と待つ力</h3>
+                        <h3>🍃 穏やかさと待つ力</h3>
                         <p id="feedback-equanimity">生成中...</p>
                     </div>
 
                     <div class="reflection-section">
-                        <h3>✨ 臨床態度の観点から</h3>
+                        <h3>✨ 支援者としての心のあり方から</h3>
                         <div class="attitude-evaluations" id="attitude-evaluations">
                             </div>
                     </div>
