@@ -797,18 +797,18 @@ function downloadReflection() {
     // フィードバックテキストの取得（簡易版）
     const empathy = document.getElementById('feedback-empathy').textContent;
     
-    const content = `コンパッションケアAI - 省察記録
+    const content = `コンパッションケアAI - 対話の振り返り記録
 =============================================
 日時: ${now.toLocaleString()}
 選択した心: ${selectedHeartData.name || '未選択'}
 シナリオ: ${currentScenarioData?.title || '未記録'}
 
 =============================================
-【AIフィードバック概要】
+【振り返りの概要】
 ${empathy.substring(0, 200)}...
 
 =============================================
-【あなた自身の省察】
+【あなた自身の振り返り】
 ${reflectionText}
 
 =============================================
@@ -818,7 +818,7 @@ ${reflectionText}
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `省察記録_${dateStr.replace(/\//g,'-')}.txt`;
+    link.download = `対話の振り返り_${dateStr.replace(/\//g,'-')}.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
